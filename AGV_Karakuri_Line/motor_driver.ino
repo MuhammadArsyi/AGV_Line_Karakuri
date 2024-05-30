@@ -10,23 +10,23 @@ void setMotorSpeed(int i, int spd) {
 
   if (i == LEFT) {
     if (reverse == 0) {
-      digitalWrite(BRAKE_MOTOR_LEFT, LOW);
-      digitalWrite(DIRECTION_MOTOR_LEFT, LOW);
-      analogWrite(PWM_MOTOR_LEFT, spd);
+      digitalWrite(brake, HIGH);
+      digitalWrite(dira, HIGH);
+      analogWrite(pwma, spd);
     } else if (reverse == 1) {
-      digitalWrite(BRAKE_MOTOR_LEFT, LOW);
-      digitalWrite(DIRECTION_MOTOR_LEFT, HIGH);
-      analogWrite(PWM_MOTOR_LEFT, spd);
+      digitalWrite(brake, HIGH);
+      digitalWrite(dira, LOW);
+      analogWrite(pwma, spd);
     }
   } else /*if (i == RIGHT) //no need for condition*/ {
     if (reverse == 0) {
-      digitalWrite(BRAKE_MOTOR_RIGHT, LOW);
-      digitalWrite(DIRECTION_MOTOR_RIGHT, LOW);
-      analogWrite(PWM_MOTOR_RIGHT, spd);
+      digitalWrite(brake, HIGH);
+      digitalWrite(dirb, LOW);
+      analogWrite(pwmb, spd);
     } else if (reverse == 1) {
-      digitalWrite(BRAKE_MOTOR_RIGHT, LOW);
-      digitalWrite(DIRECTION_MOTOR_RIGHT, HIGH);
-      analogWrite(PWM_MOTOR_RIGHT, spd);
+      digitalWrite(brake, HIGH);
+      digitalWrite(dirb, HIGH);
+      analogWrite(dirb, spd);
     }
   }
 }

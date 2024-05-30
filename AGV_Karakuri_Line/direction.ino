@@ -105,6 +105,30 @@ void stopRotateRight() {
   stopputerkanan = false;
 }
 
+void stopBackwardTesting(){
+  digitalWrite(brake, LOW);
+  analogWrite(pwma, 0);
+  analogWrite(pwmb, 0);
+  delay(2000);
+
+  motorPID(5, 5);
+  delay(2000);
+
+  digitalWrite(dira, HIGH);
+  digitalWrite(dirb, LOW);
+  // analogWrite(pwma, 0);
+  // analogWrite(pwmb, 0);
+  setMotorSpeeds(0, 0);
+  digitalWrite(brake, LOW);
+  delay(1000);
+  // motor couple naik
+  digitalWrite(brake, HIGH);
+  delay(100);
+  tandamillis = currentmillis;
+  PID_total = 0;
+  stopmundur = false;  
+}
+
 void stopBackward() {
   digitalWrite(brake, LOW);
   analogWrite(pwma, 0);
@@ -569,7 +593,7 @@ void gerakanStation() {
 }
 
 void motorPID(long arg1, long arg2) {
-  lastMotorCommand = millis();
+  // lastMotorCommand = millis();
   if (arg1 == 0 && arg2 == 0) {
     setMotorSpeeds(0, 0);
     resetPID();

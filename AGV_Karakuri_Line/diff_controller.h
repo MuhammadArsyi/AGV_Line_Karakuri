@@ -1,3 +1,6 @@
+#define LEFT  0
+#define RIGHT 1
+
 /* Functions and type-defs for PID control.
 
    Taken mostly from Mike Ferguson's ArbotiX code which lives at:
@@ -33,10 +36,10 @@ SetPointInfo;
 SetPointInfo leftPID, rightPID;
 
 /* PID Parameters */
-int Kp = 20;
-int Kd = 12;
-int Ki = 0;
-int Ko = 50;
+int kp = 20;
+int kd = 12;
+int ki = 0;
+int ko = 50;
 
 unsigned char moving = 0; // is the base in motion?
 
@@ -82,7 +85,7 @@ void doPID(SetPointInfo * p) {
   */
   //output = (Kp * Perror + Kd * (Perror - p->PrevErr) + Ki * p->Ierror) / Ko;
   // p->PrevErr = Perror;
-  output = (Kp * Perror - Kd * (input - p->PrevInput) + p->ITerm) / Ko;
+  output = (kp * Perror - kd * (input - p->PrevInput) + p->ITerm) / ko;
   p->PrevEnc = p->Encoder;
 
   output += p->output;
@@ -96,7 +99,7 @@ void doPID(SetPointInfo * p) {
   /*
   * allow turning changes, see http://brettbeauregard.com/blog/2011/04/improving-the-beginner%E2%80%99s-pid-tuning-changes/
   */
-    p->ITerm += Ki * Perror;
+    p->ITerm += ki * Perror;
 
   p->output = output;
   p->PrevInput = input;
