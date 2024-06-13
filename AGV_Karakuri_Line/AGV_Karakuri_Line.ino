@@ -20,6 +20,18 @@ bool L = LOW;
 const int sensor[16] = { 53, 51, 49, 47, 45, 43, 41, 39, 37, 35, 33, 31, 29, 27, 25, 23 };
 int sensorValue[16] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
+/* Maximum PWM signal */
+#define MAX_PWM 100
+
+/* Motor driver function definitions */
+#include "motor_driver.h"
+
+/* Encoder driver function definitions */
+#include "encoder_driver.h"
+
+/* PID parameters and functions */
+#include "diff_controller.h"
+
 /* Run the PID loop at 30 times per second */
 #define PID_RATE 30  // Hz
 
@@ -29,10 +41,10 @@ const int PID_INTERVAL = 1000 / PID_RATE;
 /* Track the next time we make a PID calculation */
 unsigned long nextPID = PID_INTERVAL;
 
-/* Stop the robot if it hasn't received a movement command
-   in this number of milliseconds */
-#define AUTO_STOP_INTERVAL 10000
-long lastMotorCommand = AUTO_STOP_INTERVAL;
+// /* Stop the robot if it hasn't received a movement command
+//    in this number of milliseconds */
+// #define AUTO_STOP_INTERVAL 10000
+// long lastMotorCommand = AUTO_STOP_INTERVAL;
 
 String data;
 bool stopseterusnya;
@@ -166,12 +178,12 @@ void loop() {
     nextPID += PID_INTERVAL;
   }
 
-  // Check to see if we have exceeded the auto-stop interval
-  if ((millis() - lastMotorCommand) > AUTO_STOP_INTERVAL) {
-    ;
-    setMotorSpeeds(0, 0);
-    moving = 0;
-  }
+  // // Check to see if we have exceeded the auto-stop interval
+  // if ((millis() - lastMotorCommand) > AUTO_STOP_INTERVAL) {
+  //   ;
+  //   setMotorSpeeds(0, 0);
+  //   moving = 0;
+  // }
 
   if (data.length() > 0) {
     if (data == "1") {  //stop seterusnya

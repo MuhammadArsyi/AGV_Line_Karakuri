@@ -1,6 +1,3 @@
-#define DIRECTION_MOTOR_RIGHT 10
-#define PWM_MOTOR_RIGHT 9
-#define BRAKE_MOTOR_RIGHT 2
-#define DIRECTION_MOTOR_LEFT 7
-#define PWM_MOTOR_LEFT 6
-#define BRAKE_MOTOR_LEFT 3
+void initMotorController();
+void setMotorSpeed(int i, int spd);
+void setMotorSpeeds(int leftSpeed, int rightSpeed);
